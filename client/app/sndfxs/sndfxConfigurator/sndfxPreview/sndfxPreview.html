@@ -1,0 +1,48 @@
+<div class="sndfx-preview-modal">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+    <h3>Sound Fx Preview</h3>
+  </div>
+
+  <div class="modal-body">
+    <!--Class Panel (e.g Amplifier, cabinet, pedals-->
+    <div class="panel amplifier-border panel-primary">
+      <div class="panel-heading amplifier-controls-panel">
+        <h3 class="amplifier-logo">{{sndfxData.name}}</h3>
+        <div class="amplifier-on-off-controls">
+          <label title="turn on/off amplifier" class="switch switch-light">
+            <input class="switch-input" type="checkbox" ng-model="onOffValue"
+                   ng-change="turnOnOffWebAudioSndfx(sndfxData.filters)"/>
+            <span class="switch-label" data-on="On" data-off="Off"></span>
+            <span class="switch-handle"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="panel-body amplifier-filters-panel" gridster="gridsterOptions">
+        <ul>
+          <li gridster-item="sndFilter" class="amplifier-filter-grid-item"
+              ng-repeat="sndFilter in sndfxData.filters">
+            <div class="box amplifier-filter-control">
+              <div class="box-content">
+                <div class="box-controller">
+                  <div>
+                    <ui-knob value="sndFilter.value" options="knobOptions"></ui-knob>
+                  </div>
+                </div>
+                <h3>{{ sndFilter.name }}</h3>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--end Class Panel (e.g Amplifier, cabinet, pedals-->
+  </div>
+
+  <div class="modal-footer">
+    <a ng-click="dismiss()" class="btn btn-primary" tabindex="-1">Ok</a>
+  </div>
+
+</div>
+

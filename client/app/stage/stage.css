@@ -1,0 +1,223 @@
+#guitar-stage {
+  width: 100%;
+  height: 100%;
+  background: #000000 url("/assets/images/stage.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+#guitar-stage .stage-controls {
+  padding: 0px 20px;
+  color: #888;
+}
+
+.carousel-3d-container {
+  overflow: visible;
+}
+
+.carousel-3d .slide-3d {
+  overflow: visible !important;
+}
+
+.pedal-container {
+  width: auto;
+  height: auto;
+}
+
+.pedal {
+  height: 35vh;
+  width: 20vh;
+  border-radius: 10px;
+  margin: 2vh;
+  padding: 2vh;
+  display: inline-block;
+  font-family: 'Yellowtail', cursive;
+  text-align: center;
+  background-image: -webkit-radial-gradient(center, rgba(0, 0, 0, 0) 0%, hsla(0, 10%, 39%, 0.3) 100%, hsl(0, 85%, 47%) 100%),
+  -webkit-linear-gradient(transparent 47%, hsla(24, 10%, 8%, 2.9) 57%, hsla(0, 63%, 9%, 0.3) 110%);
+  background-image: -moz-radial-gradient(center, transparent 0%, hsla(0, 10%, 39%, 0.3) 100%, hsla(0, 85%, 47%, 1.8) 100%),
+  -moz-linear-gradient(transparent 47%, hsla(24, 10%, 8%, 2.9) 57%, hsla(0, 63%, 9%, 0.3) 110%);
+  -webkit-transform: translateZ(50px);
+  -moz-transform: translateZ(50px);
+  box-shadow: 0px 17px 20px 7px #000;
+  -webkit-box-shadow: 0px 17px 20px 7px #000;
+  -moz-box-shadow: 0px 17px 20px 7px #000;
+}
+
+.current .fullscreen .pedal-name-container {
+  height: 9vh;
+  overflow: visible;
+}
+
+.pedal-name {
+  color: #bbb;
+  font-family: Fender, Impact, Charcoal, sans-serif !important;
+  text-shadow: 9px 9px 9px rgba(0, 0, 0, 0.7);
+  -webkit-font-smoothing: antialiased;
+  padding: 10px 10px 0px 15px;
+  margin: 0px;
+
+}
+
+.current .fullscreen .pedal-name {
+  font-size: 9vw;
+  width: 100vw;
+  color: #fff;
+  font-size: 9vw;
+  width: 100vw;
+  position: relative;
+  top: -10vh;
+  left: -41vw;
+  margin: 0px;
+  padding: 0px;
+  overflow: visible;
+}
+
+.pedal-lcd {
+  height: 15vh;
+  width: 100%;
+  background-color: #2C2C2C;
+  border-radius: 5px;
+  border: 3px inset #ccc;
+  margin-bottom: 10px;
+}
+
+.pedal-graph {
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+}
+
+.pedal-leds {
+  position: absolute;
+  bottom: 11vh;
+  left: 0;
+  width: 100%;
+}
+
+.pedal-led {
+  margin-top: 30px;
+  text-align: center;
+  display: inline-block;
+  height: 1.6vh;
+  width: 1.6vh;
+  border-radius: 50%;
+  box-shadow: inset 0px -3px 6px 1px rgba(255, 255, 255, 0.5);
+  background-color: hsla(100, 20%, 50%, 0.4);
+  -webkit-transition-property: box-shadow;
+  -moz-transition-property: box-shadow;
+  -webkit-transition-duration: 100ms;
+  -moz-transition-duration: 100ms;
+  opacity: 0.6;
+  -webkit-transform: translateZ(1px);
+  -moz-transform: translateZ(1px);
+}
+
+.current .pedal-on .pedal-led {
+  opacity: 1;
+  background-color: hsl(84, 77%, 64%);
+  box-shadow: inset 0px -2px 7px 2px rgba(255, 255, 255, 0.7), 0px 0px 60px 30px hsla(100, 87%, 50%, 0.9), inset 2px 0px 4px 1px hsla(59, 72%, 44%, 0.9);
+}
+
+.pedal-switches {
+  position: absolute;
+  bottom: 2vh;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateZ(1px);
+  -moz-transform: translateZ(1px);
+}
+
+.pedal-switch {
+  position: relative;
+  vertical-align: top;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.pedal-switch-label {
+  position: relative;
+  margin: 1vh;
+  text-align: center;
+  display: inline-block;
+  display: block;
+  cursor: pointer;
+  vertical-align: top;
+  height: 6vh;
+  width: 6vh;
+  background-size: 6vh;
+  background-image: url("/assets/images/switch.png");
+}
+
+.pedal-switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+/* option colors for ngSelect*/
+
+option[value="FireBrick"] {
+  background: FireBrick;
+  color: #fff;
+}
+
+option[value="DeepPink"] {
+  background: DeepPink;
+  color: #fff;
+}
+
+option[value="SpringGreen"] {
+  background: SpringGreen;
+  color: #000;
+}
+
+option[value="SlateBlue"] {
+  background: SlateBlue;
+  color: #fff;
+}
+
+option[value="Gold"] {
+  background: Gold;
+  color: #000;
+}
+
+option[value="Aqua"] {
+  background: Aqua;
+  color: #000;
+}
+
+option[value="Lime"] {
+  background: Lime;
+  color: #000;
+}
+
+option[value="GhostWhite"] {
+  background: GhostWhite;
+  color: #000;
+}
+
+option[value="SandyBrown"] {
+  background: SandyBrown;
+  color: #000;
+}
+
+option[value="DeepSkyBlue"] {
+  background: DeepSkyBlue;
+  color: #fff;
+}
+
+option[value="Silver"] {
+  background: Silver;
+  color: #000;
+}
+
+option[value="GreenYellow"] {
+  background: GreenYellow;
+  color: #000;
+}
+

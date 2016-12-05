@@ -1,0 +1,158 @@
+<div id="parallax-container" ng-hide="$ctrl.isLoggedIn()">
+  <div ng-parallax class="main-banner" pattern="'/assets/images/music_banner.jpg'" speed="0" reverse="false">
+    <div class="container">
+      <div id="main-amp-logo"></div>
+      <h1>AMPMOD</h1>
+      <p>Create, Sell &amp; Buy <em>Virtual Sound FX Configurations</em> for electric guitar</p>
+      <div>
+        <a class="btn btn-default btn-lg btn-default" ui-sref="signup">
+          Sign up
+        </a>
+        <a class="btn btn-inverse btn-lg btn-primary" ui-sref="login">
+          Login
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div ng-parallax class="main-banner banner-concert" pattern="'/assets/images/concert.jpg'" speed="0" reverse="true">
+    <div class="container">
+      <h1>What we offer</h1>
+      <div class="row">
+        <div class="col-md-4 special_box">
+          <i class="icon fa-cog major"></i>
+          <h3>Create</h3>
+          <p>Show your creative skills and become a recognized Virtual Sound FX composer. Use the Ultimate
+            AmpMod's high quality tools to create striking sound effects. There is no need to download - everything
+            happens in your browser. Our tools are of the highest professional standard and
+            easy to use.</p>
+        </div>
+        <div class="col-md-4 special_box">
+          <i class="icon fa-refresh major"></i>
+          <h3>Sell</h3>
+          <p>Already created or modified a Virtual Sound FX configuration? Great - it is time to make some money and be
+            recognized as a professional audio engineer. Get rated and reach the top 10 of all sound configs with
+            your
+            creative work.</p>
+        </div>
+        <div class="col-md-4 special_box">
+          <i class="icon fa-area-chart major"></i>
+          <h3>Buy</h3>
+          <p>Acquire a professional Virtual Sound FX configuration for your next on stage performance from skilled sound
+            configuration artists. The solutions we offer are ready to use, there is no need for configuring - just
+            play it. We offer a curated catalog of sound effect configurations in our market, including a Top 10
+            view.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-parallax class="main-banner" pattern="'/assets/images/guitar.jpeg'" speed="0" reverse="false">
+    <div class="container">
+      <h1>Start Creating With Our Tools</h1>
+      <div class="special_box">
+        <p>The tools used for the creation of fascinating sounds are highly professional and always kept up to date with
+          new revelations in the market.</p>
+        <h2>Membership Information</h2>
+        <p>Sign up and become a member of this unique community of Virtual Sound Fx creators and electric guitar
+          performers. Buying
+          configurations just requires a validated account and is free. If you want to create or modify Sound Fx
+          configurations with the provided tools, a subscription is necessary.</p>
+        <div>
+          <a class="btn btn-default btn-lg btn-default" ui-sref="signup">
+            Sign up
+          </a>
+          <a class="btn btn-inverse btn-lg btn-primary" ui-sref="login">
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-parallax class="main-banner" pattern="'/assets/images/onstage.jpeg'" speed="0" reverse="false">
+    <div class="container">
+      <div class="row special_box">
+        <div class="col-md-2">
+          <h3>About</h3>
+          <ul class="alt">
+            <li><a href="#">Terms and Conditions</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Advertise</a></li>
+            <li><a href="#">Contact/Support</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h3>Community</h3>
+          <ul class="alt">
+            <li><a href="#">Forums</a></li>
+            <li><a href="#">RSS Feeds</a></li>
+            <li><a href="#">Youtube</a></li>
+            <li><a href="#">Education</a></li>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <h2>Social Media and Newsletter</h2>
+          <p>Feel free to always be up to date by following us at several social media platforms and by subscribing to
+            our <a href="#">Newsletter</a>. We will keep you informed about the best rated configs, news in the field of
+            virtual sound effect conigurations and popular audio engineers.</p>
+          <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="copyright">
+        <li>&copy; SEBA Team 53. All rights reserved.</li>
+        <li>Images: <a href="http://pexels.com">Pexels</a></li>
+        <li>+Images: <a href="http://pixabay.com">Pixabay</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-show="$ctrl.isLoggedIn()">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <section class="jumbotron">
+          <h1>Welcome Back!</h1>
+          <p>Ultimate AmpMod &reg;
+            <br/>
+            An award-winning tool for audio engineers and guitar players.</p>
+          <hr/>
+          <h3>Membership Information</h3>
+          <br/>
+          <p>
+            You can start <a ui-sref="sndfxs">creating right now</a>
+            or scan the <a ui-sref="market">market</a> for Soundfx Configurations.</p>
+          <p>Enjoy our <a ui-sref="stage">On-Stage</a> platform for live performances!</p>
+        </section>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="electric-guitar-lap"></div>
+          <h3>Our latest Soundfx Configurations</h3>
+          <ul class="alt">
+            <li ng-repeat="sndfx in $ctrl.sndfxs | limitTo: 6"
+            ><a href="market">{{sndfx.name}} | by {{sndfx.creator.nickname}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <section class="col-sm-12 text-center music-news">
+        <h3>Music News</h3>
+        <ul class="alt">
+          <li><a href="#">Is Prince's Purple Cloud Guitar on eBay for 70,000$?</a></li>
+          <li><a href="#">Reverend Guitars Announces Silver Sparkle Eastsider T</a></li>
+          <li><a href="#">Orange Introduces Crush Bass Combo Range</a></li>
+          <li><a href="#">Boss Announces Waza Craft CE-2W Chorus Pedal</a></li>
+          <li><a href="#">More</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+

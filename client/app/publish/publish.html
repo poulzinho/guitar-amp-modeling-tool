@@ -1,0 +1,173 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>Publish</h1>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well">
+          <div class="panel panel-default publish-panel">
+            <form editable-form class="panel-body"
+                  name="editableForm"
+                  onaftersave="$ctrl.updateSndfxInfo()"
+                  oncancel="cancel()"
+                  >
+
+              <div class="media col-md-3 text-center">
+                <figure class="">
+                  <img class="media-object img-rounded img-responsive"
+                       src="http://placehold.it/350x250"
+                       alt="placehold.it/350x250">
+                </figure>
+              </div>
+              <div class="col-md-6">
+                <h2 editable-text="sndfx.name"
+                    e-form="editableForm"
+                    class="list-group-item-heading"
+                    e-required>
+                  {{sndfx.name}}
+                </h2>
+                <br/>
+                <p class="list-group-item-heading text-muted">
+                  {{sndfx.class | uppercase}} by {{sndfx.creator.nickname}}
+                </p>
+                <p ng-show="sndfx.creator.nickname != sndfx.owner.nickname"
+                   class="text-muted">
+                  *customized by {{sndfx.owner.nickname}}
+                </p>
+                <hr/>
+                <h4>Description:</h4>
+                <p class="text-justify"
+                   editable-textarea="sndfx.description"
+                   e-rows="3" e-cols="70"
+                >
+                  {{sndfx.description}}
+                </p>
+              </div>
+              <div class="col-md-3 text-right">
+                <button type="button" class="btn btn-default"
+                        ng-click="editableForm.$show()"
+                        ng-show="!editableForm.$visible">
+                  Edit
+                </button>
+                <span class="btn-group" ng-show="editableForm.$visible">
+                  <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+                    Save
+                  </button>
+                  <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting"
+                          ng-click="editableForm.$cancel()">
+                    Cancel
+                  </button>
+                </span>
+              </div>
+
+            </form>
+          </div>
+
+          <uib-alert ng-repeat="alert in $ctrl.alerts"
+                     type="{{alert.type}}"
+                     close="$ctrl.closeAlert($index)"
+                     dismiss-on-timeout="3000">
+            {{alert.msg}}
+          </uib-alert>
+
+          <div class="panel panel-title">
+            <div class="panel-heading">
+              <h3>Licenses:</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-1"></div>
+
+              <div ng-repeat="sndfxLicense in $ctrl.sndfxLicenses">
+
+                <form editable-form
+                      name="tableform"
+                      onaftersave="saveTable()"
+                      oncancel="cancel()"
+                      class="col-md-4 well">
+                  <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                      <th>License</th>
+                      <td>{{sndfxLicense.license | uppercase}}</td>
+                    </tr>
+                    <tr>
+                      <th>Price</th>
+                      <td editable-number="sndfxLicense.price"
+                          e-form="tableform"
+                          e-required
+                          e-min="0"
+                          e-step="any"
+                      >
+                        {{sndfxLicense.price |  currency: "€ "}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Published</th>
+                      <td ng-if="sndfxLicense.published">
+                        <span class="glyphicon glyphicon-ok"
+                              aria-hidden="true"
+                        ></span>
+                      </td>
+                      <td ng-if="!sndfxLicense.published">
+                        No yet
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Since</th>
+                      <td ng-show="sndfxLicense.updated">{{sndfxLicense.updated | date }}</td>
+                      <td ng-show="!sndfxLicense.updated">-</td>
+                    </tr>
+                    <tr class="text-right">
+                      <td colspan="2">
+                        <div class="btn-group">
+                          <!-- buttons -->
+                          <button type="button" class="btn"
+                                  ng-show="!sndfxLicense.published && !tableform.$visible"
+                                  ng-click="tableform.$show()">
+                            Edit
+                          </button>
+                          <div class="btn-group" ng-show="tableform.$visible">
+                            <button class="btn btn-primary"
+                                    type="submit" ng-disabled="tableform.$waiting">
+                              save
+                            </button>
+                            <button class="btn btn-default"
+                                    type="button" ng-disabled="tableform.$waiting"
+                                    ng-click="tableform.$cancel()"
+                            >
+                              cancel
+                            </button>
+                          </div>
+                          <button ng-show="!sndfxLicense.published && !tableform.$visible"
+                                  class="btn btn-success"
+                                  ng-click="$ctrl.publishSndfx(sndfxLicense)">
+                            <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+                            Publish
+                          </button>
+                        </div>
+                          <button ng-show="sndfxLicense.published" class="btn btn-danger"
+                                  ng-click="$ctrl.unpublishSndfx(sndfxLicense)">
+                            <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+                            Unpublish
+                          </button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </form>
+                <div class="col-md-2"></div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <hr/>
+    <a ui-sref="sndfxs">Return to My SoundFx</a>
+
+  </div>
+</div>

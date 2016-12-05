@@ -1,0 +1,55 @@
+<div ng-show="nav.isLoggedIn()" class="navbar navbar-default navbar-static-top" ng-controller="NavbarController">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <div id="amp-logo-navbar"></div>
+      </a>
+    </div>
+    <div uib-collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li ng-repeat="item in nav.menu" ui-sref-active="active">
+          <a ui-sref="{{item.state}}">{{item.title}}</a>
+        </li>
+        <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
+        <li ui-sref-active="active"><a ui-sref="market">Market</a></li>
+        <li ui-sref-active="active"><a ui-sref="sndfxs">My SoundFx</a></li>
+        <li ui-sref-active="active"><a ui-sref="stage">The Stage</a></li>
+        <li></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active">
+          <a ui-sref="cart">({{nav.localStorage.cart.length}}) <span class="glyphicon glyphicon-shopping-cart"></span> cart</a>
+        </li>
+        <li class="dropdown" uib-dropdown is-open="status.isopen">
+          <a class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" data-toggle="dropdown" role="button"
+             aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-user"></span> {{ nav.getCurrentUser().nickname}} <span
+            class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+            <li>
+              <a ui-sref="orders"><span class="glyphicon glyphicon-th-list"></span> Your Orders</a>
+            </li>
+            <li>
+              <a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span> Your Account</a>
+            </li>
+            <li class="divider"></li>
+            <li><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- Single button -->
+
+
+  </div>
+</div>

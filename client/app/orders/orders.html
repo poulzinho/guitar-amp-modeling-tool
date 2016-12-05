@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>Your orders</h1>
+
+    <div ng-show="$ctrl.orders.length < 1">
+      <p>You have no orders yet</p>
+      <button type="button" class="btn btn-default btn-block" ui-sref="market">
+        <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+      </button>
+    </div>
+
+    <table ng-show="$ctrl.orders.length > 0" class="table table-striped table-responsive">
+      <thead>
+      <th>Ordered on:</th>
+      </thead>
+      <tbody>
+      <tr ng-repeat="order in $ctrl.orders | orderBy: '-orderDate'">
+        <td><a href="#" ng-click="$ctrl.viewOrder(order)">{{order.orderDate | date:'medium'}}</a></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,317 @@
+h1 {
+  padding-bottom: 15px;
+}
+
+.panel-heading h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: normal;
+  width: 75%;
+  padding-top: 8px;
+}
+
+.audio-ctrl-img {
+  width: 63px;
+  height: 63px;
+  border: 1px solid #eee;
+  float: left;
+}
+
+.audio-ctrl-knob, .audio-ctrl-slider-vert, .audio-ctrl-slider-horiz, .audio-ctrl-onoff {
+  background: url('/assets/images/snd-cfg-ctrls.png') no-repeat;
+  cursor: pointer;
+}
+.audio-ctrl-knob{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 63px;
+  background-position: 0px 0px;
+  font-size: 0.55em;
+}
+.audio-ctrl-slider-vert{
+  height: 63px;
+  background-position: -63px 0px;
+}
+.audio-ctrl-slider-horiz{
+  height: 63px;
+  background-position: 0px -63px;
+}
+.audio-ctrl-onoff{
+  height: 63px;
+  background-position: -63px -63px;
+}
+
+.box {
+  height: 100%;
+  border: none;
+  background-color: #fff;
+  position: relative;
+}
+.box-header {
+  padding: 0 60px 0 0px;
+  cursor: move;
+  height: 20px;
+  width: 100%;
+}
+
+.box-header-btns {
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.box-content {
+  text-align: center;
+  position: relative;
+  bottom: 0;
+}
+
+.box-controller {
+  height: 73px;
+}
+
+.box-content h3 {
+  height: 22px;
+  padding: 5px 10px 0px 10px;
+  margin: 0px;
+  text-align: center;
+  font-size: 1em;
+  position: relative;
+  bottom: 0px;
+  overflow: hidden;
+  color: #181818;
+}
+
+form {
+  margin-bottom: 0;
+}
+
+form {
+  margin-bottom: 0;
+}
+.gridster {
+  border: 1px solid #ccc;
+}
+
+.amplifier-logo {
+  font-family: Fender, Impact, Charcoal, sans-serif !important;
+  text-shadow: 9px 9px 9px rgba(0,0,0,0.7);
+  -webkit-font-smoothing: antialiased;
+  font-size: 5em;
+  padding: 10px 10px 0px 15px;
+  margin: 0px;
+}
+
+
+.amplifier-border {
+  background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+  background-color: #131313;
+  background-size: 20px 20px;
+  border: 30px solid transparent;
+  box-shadow: 0px 8px 7px #888888;
+}
+
+.amplifier-filters-panel{
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c9aa70+0,eae28f+14,ede268+25,fceea9+37,fffcf9+56,e8e3b9+68,eae28f+81,eae28f+91,d3aa58+100 */
+  background: #c9aa70; /* Old browsers */
+  background: -moz-linear-gradient(left,  #c9aa70 0%, #eae28f 14%, #ede268 25%, #fceea9 37%, #fffcf9 56%, #e8e3b9 68%, #eae28f 81%, #eae28f 91%, #d3aa58 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #c9aa70 0%,#eae28f 14%,#ede268 25%,#fceea9 37%,#fffcf9 56%,#e8e3b9 68%,#eae28f 81%,#eae28f 91%,#d3aa58 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #c9aa70 0%,#eae28f 14%,#ede268 25%,#fceea9 37%,#fffcf9 56%,#e8e3b9 68%,#eae28f 81%,#eae28f 91%,#d3aa58 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9aa70', endColorstr='#d3aa58',GradientType=1 ); /* IE6-9 */
+}
+
+.amplifier-filter-grid-item {
+  background: none;
+  border: 1px solid transparent;
+}
+
+.amplifier-filter-grid-item:hover {
+  border: 1px solid #fff;
+}
+
+.amplifier-filter-settings {
+  visibility: hidden;
+}
+
+
+.amplifier-filter-grid-item:hover .amplifier-filter-settings {
+  visibility: visible;
+}
+
+.amplifier-filter-control {
+  background: none;
+  border: 1px solid transparent;
+}
+
+.panel-heading.amplifier-controls-panel {
+  min-height: 160px;
+  background: linear-gradient(45deg, #333 12%, transparent 0, transparent 88%, #222 0),
+  linear-gradient(135deg, transparent 37%, #000 0, #555 63%, transparent 0),
+  linear-gradient(45deg, transparent 37%, #000 0, #555 63%, transparent 0) #000;
+  background-size: 10px 10px;
+  border: 4px inset #DDD;
+}
+
+.amplifier-on-off-controls {
+  position: absolute;
+  right: 70px;
+  top: 69px;
+}
+
+/*Switch control*/
+/*http://www.htmllion.com/css3-toggle-switch-button.html*/
+
+.switch {
+  position: relative;
+  display: block;
+  vertical-align: top;
+  width: 80px;
+  height: 30px;
+  margin: 0 10px 10px 0;
+  background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+  background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+  border-radius: 18px;
+  box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.switch-label {
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: #eceeef;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+}
+.switch-label:before, .switch-label:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -.5em;
+  line-height: 1;
+  -webkit-transition: inherit;
+  -moz-transition: inherit;
+  -o-transition: inherit;
+  transition: inherit;
+}
+.switch-label:before {
+  content: attr(data-off);
+  right: 11px;
+  color: #aaaaaa;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+.switch-label:after {
+  content: attr(data-on);
+  left: 11px;
+  color: #FFFFFF;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+  background: #E1B42B;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.switch-input:checked ~ .switch-label:before {
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+  opacity: 1;
+}
+.switch-handle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+  background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+  border-radius: 100%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.switch-handle:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+  background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+  border-radius: 6px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+}
+.switch-input:checked ~ .switch-handle {
+  left: 74px;
+  opacity: 1;
+  background-color: hsl(1, 77%, 42%);
+  box-shadow: inset 0px -2px 7px 2px rgba(255, 255, 255, 0.7), 0px 0px 60px 30px hsla(1, 77%, 42%, 0.9), inset 2px 0px 4px 1px hsla(2, 97%, 38%, 0.9);
+}
+/* Transition
+    ========================== */
+.switch-label, .switch-handle {
+  transition: All 0.3s ease;
+  -webkit-transition: All 0.3s ease;
+  -moz-transition: All 0.3s ease;
+  -o-transition: All 0.3s ease;
+}
+
+/* Switch Light
+==========================*/
+ .switch-light {
+   padding: 0;
+   background: #FFF;
+   background-image: none;
+ }
+.switch-light .switch-label {
+  background: #FFF;
+  border: outset 2px #eceeef;
+  box-shadow: none;
+}
+.switch-light .switch-label:after {
+  color: #ff0000;
+}
+.switch-light .switch-label:before {
+  right: inherit;
+  left: 11px;
+}
+.switch-light .switch-handle {
+  top: 4px;
+  left: 51px;
+  background: #dadada;
+  width: 22px;
+  height: 22px;
+  box-shadow: none;
+}
+.switch-light .switch-handle:before {
+  background: #eceeef;
+}
+.switch-light .switch-input:checked ~ .switch-label {
+  background: #fff;
+  border: inset 2px #AA0000;
+}
+.switch-light .switch-input:checked ~ .switch-handle {
+  left: 51px;
+  background: #bb0000;
+}
+.switch-light .switch-input:checked ~ .switch-handle:before {
+  background: red;
+}
+
+
+

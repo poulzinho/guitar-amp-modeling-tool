@@ -1,0 +1,235 @@
+<div class="container">
+  <div class="col-md-12">
+
+    <h1>Market</h1>
+
+    <div>
+      <form role="search">
+        <div class="input-group">
+
+          <input placeholder="Search" class="form-control search-input" type="text"
+                 ng-change="$ctrl.search(query.name, ItemsPerPage)"
+                 ng-model="query.name"/>
+          <div class="input-group-btn">
+            <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <hr/>
+
+    <uib-alert ng-repeat="alert in $ctrl.alerts"
+               type="{{alert.type}}"
+               close="$ctrl.closeAlert($index)"
+               dismiss-on-timeout="3000">
+      {{alert.msg}}
+    </uib-alert>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h5>Refine search</h5>
+            </div>
+            <div class="panel-body">
+              <h5>Average Rating</h5>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="5" ng-model="$ctrl.selectedRating[4]"
+                         ng-change="$ctrl.filterRating($ctrl.sndfxs, ItemsPerPage, true)"/>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="4" ng-model="$ctrl.selectedRating[3]"
+                         ng-change="$ctrl.filterRating($ctrl.sndfxs, ItemsPerPage, true)"/>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="3" ng-model="$ctrl.selectedRating[2]"
+                         ng-change="$ctrl.filterRating($ctrl.sndfxs, ItemsPerPage, true)"/>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="2" ng-model="$ctrl.selectedRating[1]"
+                         ng-change="$ctrl.filterRating($ctrl.sndfxs, ItemsPerPage, true)"/>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="1" ng-model="$ctrl.selectedRating[0]"
+                         ng-change="$ctrl.filterRating($ctrl.sndfxs, ItemsPerPage, true)"/>
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </label>
+              </div>
+              <hr/>
+              <h5>Price</h5>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="$ctrl.priceRange[0]"
+                         ng-change="$ctrl.filterPrice($ctrl.sndfxs, ItemsPerPage, true)"/>0 - 20 EUR
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="$ctrl.priceRange[1]"
+                         ng-change="$ctrl.filterPrice($ctrl.sndfxs, ItemsPerPage, true)"/>20 - 50 EUR
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="$ctrl.priceRange[2]"
+                         ng-change="$ctrl.filterPrice($ctrl.sndfxs, ItemsPerPage, true)"/>50 - 100
+                  EUR
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="$ctrl.priceRange[3]"
+                         ng-change="$ctrl.filterPrice($ctrl.sndfxs, ItemsPerPage, true)"/>over 100
+                  EUR
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-10">
+        <div class="right">
+          <strong> Sort By Rating:</strong>
+          <button
+            ng-click="$ctrl.orderRating($ctrl.pager.currentPage,ItemsPerPage, reverseRating); reverseRating=!reverseRating"
+            ng-if="!reverseRating">
+            ↓↑
+          </button>
+          <strong> Sort By Price:</strong>
+          <button
+            ng-click="$ctrl.orderPrice($ctrl.pager.currentPage,ItemsPerPage, reversePrice);reversePrice=!reversePrice">
+            ↓↑
+          </button>
+        </div>
+        <div class="well">
+
+          <div class="list-group">
+            <div class="list-group-item"
+                 ng-repeat="sndfx in $ctrl.items | limitTo:ItemsPerPage ">
+              <div class="media col-md-3 text-center">
+                <figure>
+                  <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250"
+                       alt="placehold.it/350x250">
+                </figure>
+                <button class="btn try-button" ng-click="$ctrl.trySndfx(sndfx)"><span
+                  class="glyphicon glyphicon-play" aria-hidden="true"></span> Try
+                </button>
+              </div>
+              <div class="col-md-6">
+                <h2 class="list-group-item-heading">
+                  {{sndfx.name}}
+                </h2>
+                <br/>
+                <p class="list-group-item-heading text-muted">
+                  {{sndfx.class | uppercase}} by {{sndfx.creator.nickname}}
+                </p>
+                <p ng-show="sndfx.creator.nickname != sndfx.owner.nickname" class="text-muted">
+                  *customized by {{sndfx.owner.nickname}}
+                </p>
+
+                <hr/>
+                <p class="list-group-item-text text-justify">
+                  {{sndfx.description}}
+                </p>
+              </div>
+              <div class="col-md-3">
+                <table class="table table-responsive">
+                  <tbody>
+                  <tr ng-repeat="publication in sndfx.publications | orderBy:'license'">
+                    <td class="text-right">{{publication.price | currency: "€ "}}</td>
+                    <th class="text-left text-muted">{{publication.license | uppercase}}</th>
+                  </tr>
+                  </tbody>
+                </table>
+
+                <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$ctrl.addToCart(sndfx)">
+                  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                  Add to cart
+                </button>
+                <div class="stars text-center">
+                  <span ng-repeat="stars in $ctrl.ratingStars(sndfx.rating)"
+                        class="glyphicon glyphicon-star">
+                  </span><span ng-repeat="empty_stars in $ctrl.ratingEmptyStars(sndfx.rating)"
+                               class="glyphicon glyphicon-star-empty"></span>
+                </div>
+                <p class="text-center"> Average
+                  {{sndfx.rating}}
+                  <small>/</small>
+                  5
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <strong>Amplifiers per page:</strong>
+          <select ng-model="ItemsPerPage" ng-options="p as p for p in ItemsPerPageOptions"
+                  ng-change="$ctrl.setPage(1,ItemsPerPage, true)"></select>
+
+        </div>
+
+        <div>
+          <ul class="pagination" ng-if="$ctrl.pager.pages.length>1">
+            <li ng-class="{disabled:$ctrl.pager.currentPage === 1 || $ctrl.pager.currentPage === 0}">
+              <a ng-click="$ctrl.setPage(1, ItemsPerPage, true)">First</a>
+            </li>
+            <li ng-class="{disabled:$ctrl.pager.currentPage === 1 || $ctrl.pager.currentPage === 0}">
+              <a ng-click="$ctrl.setPage($ctrl.pager.currentPage - 1, ItemsPerPage, true)">Previous</a>
+            </li>
+            <li ng-repeat="page in $ctrl.pager.pages" ng-class="{active:$ctrl.pager.currentPage === page}">
+              <a ng-click="$ctrl.setPage(page, ItemsPerPage, true)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
+              <a ng-click="$ctrl.setPage($ctrl.pager.currentPage + 1, ItemsPerPage, true)">Next</a>
+            </li>
+            <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
+              <a ng-click="$ctrl.setPage($ctrl.pager.totalPages, ItemsPerPage, true)">Last</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

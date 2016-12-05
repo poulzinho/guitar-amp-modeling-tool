@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>The Stage</h1>
+
+    <div class="alert alert-dismissible alert-info"
+         ng-hide="$ctrl.amplifiers.length > 0">
+      You need to buy or create Soundfx Configurations in order to assign them to the pedals for on-stage performance!
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>
+                Amplifier
+                <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                <button ng-show="$ctrl.amplifiers.length > 0"
+                  class="btn btn-primary text-right" ng-click="$ctrl.addPedal()">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  Add pedal
+                </button>
+              </h4>
+            </div>
+
+            <div class="panel-body">
+
+              <table class="table table-hover table-responsive">
+                <tr style="font-weight: bold">
+                  <td style="width:20%">Amplifier</td>
+                  <td style="width:20%">Pedal Color</td>
+                  <td style="width:20%">Edit</td>
+                </tr>
+                <tr ng-repeat="pedal in $ctrl.pedals">
+                  <td>
+                    <span editable-select="pedal.amplifier"
+                          e-name="amplifier"
+                          e-form="rowform"
+                          e-ng-options="s.name for s in $ctrl.amplifiers"
+                    >
+                      {{ $ctrl.showAmplifier(pedal) }}
+                    </span>
+                  </td>
+                  <td>
+                    <span editable-select="pedal.bgColor"
+                          e-name="bgColor"
+                          e-form="rowform"
+                          e-ng-options="s.color for s in $ctrl.pedalColors track by s.color"
+                    >
+                      <span class="glyphicon glyphicon-stop"
+                            ng-style="{'color': pedal.bgColor.color}">
+                      </span>
+                      {{ $ctrl.showPedalColor(pedal) }}
+                    </span>
+                  </td>
+                  <td style="white-space: normal">
+                    <!-- form -->
+                    <form editable-form name="rowform"
+                          ng-show="rowform.$visible"
+                          class="form-buttons form-inline btn-group"
+                          shown="inserted == pedal">
+                      <button type="submit" ng-disabled="rowform.$waiting"
+                              class="btn btn-primary">
+                        save
+                      </button>
+                      <button type="button" ng-disabled="rowform.$waiting"
+                              ng-click="rowform.$cancel()"
+                              class="btn btn-default">
+                        cancel
+                      </button>
+                    </form>
+                    <div class="buttons btn-group" ng-show="!rowform.$visible">
+                      <button class="btn btn-default"
+                              ng-click="rowform.$show(); $ctrl.newSlideStart($index)"
+                      >edit</button>
+                      <button class="btn btn-danger" ng-click="$ctrl.removePedal($index)">del</button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel-group">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h4>
+                Stage
+                | <a ng-show="$ctrl.pedals.length > 0" href="#" ng-click="$ctrl.goFullScreenViaWatcher()">(FullScreen)</a>
+              </h4>
+            </div>
+
+            <div class="panel-body" id="guitar-stage" fullscreen="$ctrl.isFullScreen" only-watched-property>
+
+              <div class="stage-controls" ng-show="$ctrl.isFullScreen">
+                <a href="#" ng-click="$ctrl.goFullScreenViaWatcher()">Exit fullscreen</a>
+                <h1>Stage Mode</h1>
+                <p>Press the pedal switch to turn on/off</p>
+              </div>
+
+
+              <carousel3d
+                ng-model="$ctrl.pedals"
+                options="$ctrl.pedalOptions"
+                on-selected-click="$ctrl.selectedClick(index)"
+                on-slide-change="$ctrl.slideChanged(index)"
+                on-last-slide="$ctrl.lastSlide(index)"
+                on-before-change="$ctrl.beforeChange(index)">
+
+                <carousel3d-slide ng-repeat="pedal in $ctrl.pedals track by $index">
+                  <div class="pedal-container text-center"
+                       ng-class="$ctrl.isFullScreen? 'fullscreen' : ''">
+
+                    <div class="pedal-name-container">
+                      <h1 class="pedal-name">{{pedal.amplifier.name}}</h1>
+                    </div>
+                    <div class="pedal"
+                         ng-class="$ctrl.onOffSwitch? 'pedal-on' : ''"
+                         ng-style="{'background-color': pedal.bgColor.color}">
+                      <div class="pedal-lcd">
+                      </div>
+                      <div class="pedal-leds">
+                        <div class="pedal-led">
+                        </div>
+                      </div>
+                      <div class="pedal-switches">
+                        <label title="turn on/off pedals" class="pedal-switch">
+                          <input class="pedal-switch-input"
+                                 type="checkbox"
+                                 ng-model="$ctrl.onOffSwitch"
+                                 ng-change="$ctrl.turnOnOff()"/>
+                          <span class="pedal-switch-label" data-on="On" data-off="Off"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </carousel3d-slide>
+
+              </carousel3d>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>

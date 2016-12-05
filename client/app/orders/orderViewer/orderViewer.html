@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="col-md-12">
+    <h1>Order Details</h1>
+
+    <div class="row">
+      <div class="checkout-order-summary">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Ordered on {{$ctrl.order.orderDate | date:'medium'}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="list-group" class="col-xs-12">
+                <div class="list-group-item" ng-repeat="orderItem in $ctrl.order.publishedSndfxs">
+                  <div class="col-md-7">
+                    <h4 class="list-group-item-heading">
+                      <strong>{{orderItem.sndfx.name}}</strong>
+                    </h4>
+                    <p>
+                      by {{orderItem.sndfx.creator.nickname}}
+                      <span ng-show="cartItem.sndfx.creator.nickname != cartItem.sndfx.owner.nickname"
+                      >
+                      | *customized by {{cartItem.sndfx.owner.nickname}}
+                      </span>
+                    </p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="list-group-item-heading text-muted">
+                      License
+                    </p>
+                    <p>{{orderItem.license | uppercase}}</p>
+                  </div>
+                  <div class="col-md-3 text-right list-group-item-heading">
+                    {{orderItem.price | currency: "€ "}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row cart-totals">
+              <div class="col-md-8">
+              </div>
+              <div class="col-md-4">
+                <table class="table table-responsive">
+                  <tbody>
+                  <tr>
+                    <th class="text-right">Subtotal</th>
+                    <td class="text-right">
+                      {{$ctrl.subtotal | currency: "€ "}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="text-right">VAT {{$ctrl.order.vat * 100}}&#37;</th>
+                    <td class="text-right">{{$ctrl.vat | currency: "€ "}}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-right">TOTAL</th>
+                    <td class="text-right">{{$ctrl.total | currency: "€ "}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a ui-sref="orders">Return to orders</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

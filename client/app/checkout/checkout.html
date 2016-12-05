@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="col-md-12">
+
+    <h1>Checkout</h1>
+
+    <div ng-show="$ctrl.isCartEmpty() && $ctrl.alerts.length < 1">
+      <p>There are no items for checking out</p>
+      <button type="button" class="btn btn-default btn-block" ui-sref="market">
+        <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+      </button>
+    </div>
+
+    <div ng-show="$ctrl.alerts.length > 0">
+      <uib-alert ng-repeat="alert in $ctrl.alerts"
+                 type="{{alert.type}}"
+                 close="$ctrl.closeAlert($index)"
+      >
+        {{alert.msg}}
+      </uib-alert>
+      <a ui-sref="orders">Review your orders</a>
+      <hr/>
+      <a ui-sref="sndfxs">Review your SoundFX</a>
+    </div>
+
+
+    <div ng-hide="$ctrl.isCartEmpty()" class="row">
+
+      <div class="col-xs-12 col-md-8 checkout-order-summary">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Order Summary</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="list-group" class="col-xs-12">
+                <div class="list-group-item" ng-repeat="cartItem in $ctrl.localStorage.cart">
+                  <div class="col-md-7">
+                    <h4 class="list-group-item-heading">
+                      <strong>{{cartItem.sndfx.name}}</strong>
+                    </h4>
+                    <p>
+                      by {{cartItem.sndfx.creator.nickname}}
+                      <span ng-show="cartItem.sndfx.creator.nickname != cartItem.sndfx.owner.nickname"
+                      >
+                      | *customized by {{cartItem.sndfx.owner.nickname}}
+                      </span>
+                    </p>
+                  </div>
+                  <div class="col-md-2">
+                    <p class="list-group-item-heading text-muted">
+                      License
+                    </p>
+                    <p>{{cartItem.license | uppercase}}</p>
+                  </div>
+                  <div class="col-md-3 text-right list-group-item-heading">
+                    {{cartItem.price | currency: "€ "}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row cart-totals">
+              <div class="col-md-8">
+              </div>
+              <div class="col-md-4">
+                <table class="table table-responsive">
+                  <tbody>
+                  <tr>
+                    <th class="text-right">Subtotal</th>
+                    <td class="text-right">
+                      {{$ctrl.subtotal | currency: "€ "}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="text-right">VAT {{$ctrl.VAT_VAL * 100}}&#37;</th>
+                    <td class="text-right">{{$ctrl.vat | currency: "€ "}}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-right">TOTAL</th>
+                    <td class="text-right">{{$ctrl.total | currency: "€ "}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a ui-sref="cart">Modify in cart</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xs-12 col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <img class="pull-right" src="/assets/images/creditcards.png">
+            </h3>
+          </div>
+          <div class="panel-body">
+            <form role="form" id="payment-form" ng-submit="$ctrl.placeOrder()">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="cardNumber">CARD NUMBER</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="cardNumber" placeholder="Valid Card Number" required
+                             autofocus data-stripe="number"/>
+                      <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-7 col-md-7">
+                  <div class="form-group">
+                    <label for="expMonth">EXPIRATION DATE</label>
+                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                      <input type="text" class="form-control" name="expMonth" placeholder="MM" required
+                             data-stripe="exp_month"/>
+                    </div>
+                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                      <input type="text" class="form-control" name="expYear" placeholder="YY" required
+                             data-stripe="exp_year"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-5 col-md-5 pull-right">
+                  <div class="form-group">
+                    <label for="cvCode">CV CODE</label>
+                    <input type="password" class="form-control" name="cvCode" placeholder="CV" required
+                           data-stripe="cvc"/>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <button class="btn btn-success btn-lg btn-block" type="submit">Pay and place order</button>
+                </div>
+              </div>
+              <div class="row" style="display:none;">
+                <div class="col-xs-12">
+                  <p class="payment-errors"></p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

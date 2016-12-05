@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>User Management</h1>
+  <ul class="list-group user-list">
+    <li class="list-group-item" ng-repeat="user in admin.users">
+      <div class="user-info">
+        <strong>{{user.name}}</strong><br>
+        AKA: <span class="text-muted">{{user.nickname}}</span>
+        <br/>
+        e-mail: <span class="text-muted">{{user.email}}</span>
+        <br/>
+        Role: <span class="text-muted">{{user.role}}</span>
+      </div>
+      <a ng-click="admin.delete(user)" class="trash"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+    </li>
+  </ul>
+</div>

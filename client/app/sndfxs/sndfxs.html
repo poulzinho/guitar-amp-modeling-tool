@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="col-md-12">
+
+    <h1>My Sound Fx</h1>
+    <div class="alert alert-dismissible alert-info"
+         ng-hide="$ctrl.isCreator()">
+      If you want to invent a new Soundfx Configurations get a <em>Creator</em> membership!
+    </div>
+
+    <div>
+      <form role="search">
+        <div class="input-group">
+
+          <input placeholder="Search" class="form-control search-input" type="text"
+                 ng-model="query.name"/>
+          <div class="input-group-btn">
+            <button class="btn btn-default"><i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <hr/>
+
+    <div class="col-md-12 my-sndfx">
+
+      <div class="row">
+        <div class=" panel-group">
+          <div class="panel-body well">
+            <div class="list-group">
+              <div class="list-group-item" ng-repeat="sndfx in $ctrl.items | filter:query | limitTo:ItemsPerPage">
+                <div class="media col-md-2 text-left">
+                  <figure class="">
+                    <img class="img-rounded" src="http://placehold.it/100x70">
+                  </figure>
+                </div>
+                <div class="col-md-3">
+                  <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                      <th colspan="2"><strong>{{sndfx.name}}</strong></th>
+                    </tr>
+                    <tr>
+                      <th>Creator</th>
+                      <td>{{sndfx.creator.nickname}}</td>
+                    </tr>
+                    <tr>
+                      <th>Owner</th>
+                      <td>{{sndfx.owner.nickname}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-3">
+                  <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                      <th>Sndfx class</th>
+                      <td>{{sndfx.class | uppercase}}</td>
+                    </tr>
+                    <tr>
+                      <th>License</th>
+                      <td>{{sndfx.license | uppercase}}</td>
+                    </tr>
+                    <tr>
+                      <th>Published</th>
+                      <td>
+                        <span ng-if="sndfx.publications.length"
+                              class="glyphicon glyphicon-ok"
+                              aria-hidden="true"
+                        ></span>
+                        <span ng-if="sndfx.license == 'full' && !sndfx.publications.length">No yet</span>
+                        <span ng-if="sndfx.license == 'basic'">Not possible</span>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-md-4 text-right">
+                  <div ng-class="{'btn-group': sndfx.license == 'full'}">
+                    <button class="btn" ng-show="sndfx.license == 'full'"
+                            ng-click="$ctrl.configSndfx(sndfx)">
+                      <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+                      Configure
+                    </button>
+                    <button ng-show="sndfx.license == 'full' && $ctrl.isCreator()" class="btn btn-default"
+                            ng-click="$ctrl.publishSndfx(sndfx)">
+                      <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+                      Publish
+                    </button>
+                    <button class="btn btn-danger" ng-click="$ctrl.deleteSndfx(sndfx)">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ng-show="$ctrl.isCreator()" class="row">
+              <div class="col-md-6"></div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" ng-model="$ctrl.newSndfx.name">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="$ctrl.addNewSndfx()">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      Add New
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control">
+          <strong>Amplifiers per page:</strong>
+          <select ng-model="ItemsPerPage" ng-options="p as p for p in ItemsPerPageOptions"
+                  ng-change="$ctrl.setPage(1,ItemsPerPage, true)"></select>
+
+        </div>
+        <div>
+          <ul class="pagination" ng-if="$ctrl.pager.pages.length>1">
+            <li ng-class="{disabled:$ctrl.pager.currentPage === 1 || $ctrl.pager.currentPage === 0}">
+              <a ng-click="$ctrl.setPage(1, ItemsPerPage, true)">First</a>
+            </li>
+            <li ng-class="{disabled:$ctrl.pager.currentPage === 1 || $ctrl.pager.currentPage === 0}">
+              <a ng-click="$ctrl.setPage($ctrl.pager.currentPage - 1, ItemsPerPage, true)">Previous</a>
+            </li>
+            <li ng-repeat="page in $ctrl.pager.pages" ng-class="{active:$ctrl.pager.currentPage === page}">
+              <a ng-click="$ctrl.setPage(page, ItemsPerPage, true)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
+              <a ng-click="$ctrl.setPage($ctrl.pager.currentPage + 1, ItemsPerPage, true)">Next</a>
+            </li>
+            <li ng-class="{disabled:$ctrl.pager.currentPage === $ctrl.pager.totalPages}">
+              <a ng-click="$ctrl.setPage($ctrl.pager.totalPages, ItemsPerPage, true)">Last</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>

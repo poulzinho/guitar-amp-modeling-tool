@@ -1,0 +1,108 @@
+<div class="container">
+  <h1>SoundFx Configurator</h1>
+  <hr/>
+
+  <uib-alert ng-repeat="alert in $ctrl.alerts"
+             type="{{alert.type}}"
+             close="$ctrl.closeAlert($index)"
+             dismiss-on-timeout="3000">
+    {{alert.msg}}
+  </uib-alert>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <!--controls panel-->
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">Controls</div>
+
+          <div class="panel-body">
+            <div title="Distortion" class="audio-ctrl-img audio-ctrl-knob"
+                 ui-draggable="true" drag="1"
+                 drag-channel="A">DIST
+            </div>
+            <div title="Gain" class="audio-ctrl-img audio-ctrl-knob"
+                 ui-draggable="true" drag="2"
+                 drag-channel="A">GAIN
+            </div>
+            <div title="Delay" class="audio-ctrl-img audio-ctrl-knob"
+                 ui-draggable="true" drag="3"
+                 drag-channel="A">DELAY
+            </div>
+            <div title="Reverb" class="audio-ctrl-img audio-ctrl-knob"
+                 ui-draggable="true" drag="4"
+                 drag-channel="A">REVERB
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--end controls panel-->
+    </div>
+
+    <div class="col-sm-10">
+      <!--Class Panel (e.g Amplifier, cabinet, pedals-->
+      <div class="panel amplifier-border panel-primary" drop-channel="A"
+           ui-on-drop="$ctrl.dropSndfxFilter(10, $data)">
+        <div class="panel-heading amplifier-controls-panel">
+          <h3 class="amplifier-logo">{{sndfxData.name}}</h3>
+
+          <div class="amplifier-on-off-controls">
+            <label title="turn on/off amplifier" class="switch switch-light">
+              <input class="switch-input" type="checkbox" ng-model="onOffValue"
+                     ng-change="turnOnOffWebAudioSndfx(sndfxData.filters)"/>
+              <span class="switch-label" data-on="On" data-off="Off"></span>
+              <span class="switch-handle"></span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="panel-body amplifier-filters-panel" gridster="gridsterOptions">
+          <ul>
+            <li gridster-item="sndFilter" class="amplifier-filter-grid-item" ng-repeat="sndFilter in sndfxData.filters">
+              <div class="box amplifier-filter-control">
+                <div class="box-header amplifier-filter-settings">
+                  <div class="box-header-btns pull-right">
+                    <a title="settings" ng-click="$ctrl.configSndfxFilter(sndFilter)"><i
+                      class="glyphicon glyphicon-cog"></i></a>
+                    <a title="remove" ng-click="$ctrl.removeSndfxFilter(sndFilter)"><i
+                      class="glyphicon glyphicon-trash"></i></a>
+                  </div>
+                </div>
+                <div class="box-content">
+                  <div class="box-controller">
+                    <div>
+                      <ui-knob value="sndFilter.value" options="knobOptions"></ui-knob>
+                    </div>
+                  </div>
+                  <h3>{{ sndFilter.name }}</h3>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--end Class Panel (e.g Amplifier, cabinet, pedals-->
+
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="sndfxData.name">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" ng-click="$ctrl.saveSndfx()"><span
+            class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>
+
+          <button ng-show="$ctrl.isCreator()" class="btn btn-default" type="button"
+                  ng-click="$ctrl.publishSndfx(sndfxData)"><span
+            class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> Publish</button>
+        </span>
+      </div>
+
+      <hr/>
+
+      <a ui-sref="sndfxs">Return to My SoundFx</a>
+
+    </div>
+
+  </div>
+
+</div>

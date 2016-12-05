@@ -1,0 +1,21 @@
+.sndfx-cart .panel-body ,.checkout-order-summary .panel-body {
+  padding-top: 0px;
+}
+.sndfx-cart .list-group-item ,.checkout-order-summary .list-group-item {
+  padding: 20px;
+  min-height: 130px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.cart-totals {
+  padding: 30px 0px 10px 0px;
+}
+
+.text-price {
+  padding-right: 0px;
+}
+
+figure {
+  margin-bottom: 20px;
+}
