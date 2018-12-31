@@ -4,9 +4,9 @@ Award-winning tools for Audio Engineers and Guitar Players.
 SEBA Web App Engineering 2016
 
 ## Developers
-Paul Gualotuna
-Aurel Roci
-Anna Christina Prottung
+- Paul Gualotuna
+- Aurel Roci
+- Anna Christina Prottung
 
 ## Getting Started
 ### Prerequisites
